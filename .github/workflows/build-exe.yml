@@ -26,12 +26,16 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
 
-      - name: Build EXE
+      - name: Install UPX
         run: |
-          pyinstaller --noconsole --onefile run.py
+          choco install upx -y
+
+      - name: Build EXE using spec
+        run: |
+          pyinstaller deep_live_cam.spec
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: DeepLiveCam-exe-2.4
-          path: dist/run.exe
+          name: DeepLiveCam-2.4-lite-exe
+          path: dist/DeepLiveCam.exe
