@@ -1,6 +1,7 @@
-# deep_live_cam.spec
 # -*- mode: python ; coding: utf-8 -*-
 block_cipher = None
+
+import PyInstaller.utils.hooks
 
 a = Analysis(
     ['run.py'],
@@ -8,11 +9,11 @@ a = Analysis(
     binaries=[],
     datas=[],
     hiddenimports=[
-        'customtkinter', 'PIL', 'cv2', 'numpy', 'torch', 'onnxruntime', 'insightface'
+        'customtkinter', 'PIL', 'cv2', 'numpy', 'tensorflow', 'tkinter_fix', 'modules'
     ],
     hookspath=[],
     excludes=[
-        'tests', 'torchvision', 'matplotlib', 'pip', 'setuptools', 'onnxruntime/testdata', 'tkinter/test'
+        'tests', 'torchvision', 'matplotlib', 'pip', 'setuptools', 'onnxruntime/testdata', 'tkinter/test', 'torch', 'onnxruntime'
     ],
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
@@ -30,6 +31,6 @@ exe = EXE(
     name='DeepLiveCam',
     debug=False,
     strip=False,
-    upx=True,          # сжатие exe
-    console=False,     # GUI без консоли
+    upx=True,        # сжимает exe
+    console=False,   # GUI без консоли
 )
